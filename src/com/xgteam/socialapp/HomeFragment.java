@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
 		new DownloadImageTask(userPicture).execute(picture);
 		
 		userName.setText(app.getUser().getFirstName()+" "+app.getUser().getLastName());
-		if (User.getOnlineState() == true) {
+		if (app.getUser().isOnline() == true) {
 			userOnlineState.setText("Online");
 		} else {
 			userOnlineState.setText("Offline");
