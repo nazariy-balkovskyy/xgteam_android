@@ -67,6 +67,7 @@ public class HomeFragment extends Fragment {
 		Social.login("andrew", "andrew");
 		wallList=Wall.getUserWall();
 		String picture=app.getUser().getPicture();
+		
 		new DownloadImageTask(userPicture).execute(picture);
 		
 		userName.setText(app.getUser().getFirstName()+" "+app.getUser().getLastName());
