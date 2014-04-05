@@ -3,7 +3,8 @@ package com.xgteam.socialapp;
 import java.util.ArrayList;
 
 import com.xgteam.adapter.FriendsListAdapter;
-import com.xgteam.model.FriendItem;
+import com.xgteam.application.App;
+import com.xgteam.data.FriendObject;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -13,28 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 public class FriendsListFragment extends Fragment{
-	ArrayList<FriendItem> friends = new ArrayList<FriendItem>();
+	ArrayList<FriendObject> friends = new ArrayList<FriendObject>();
 	public FriendsListFragment(){
 		super();
-		friends.add(new FriendItem(1,"Nazar","Balkovsky",true,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(2,"Andrew","Dubitskyy",true,"http://bingbangstudios.com/press/fork/fork_icon50x50.jpg"));
-		friends.add(new FriendItem(3,"Nazar","Ivashiv",true,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(4,"Nazar","Balkovsky",false,"http://bingbangstudios.com/press/fork/fork_icon50x50.jpg"));
-		friends.add(new FriendItem(5,"Andrew","Dubitskyy",false,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(6,"Nazar","Ivashiv",false,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(7,"Nazar","Balkovsky",false,"http://bingbangstudios.com/press/fork/fork_icon50x50.jpg"));
-		friends.add(new FriendItem(8,"Andrew","Dubitskyy",false,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(9,"Nazar","Ivashiv",false,"http://bingbangstudios.com/press/fork/fork_icon50x50.jpg"));
-		friends.add(new FriendItem(10,"Nazar","Balkovsky",false,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(11,"Andrew","Dubitskyy",false,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(12,"Nazar","Ivashiv",false,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
+		friends = (ArrayList<FriendObject>) App.getInstance().Friends().getUserFriends(1);
 	}
 	
 	public FriendsListFragment setOnlineMode(){
-		friends.clear();
-		friends.add(new FriendItem(1,"Nazar","Balkovsky",true,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(2,"Andrew","Dubitskyy",true,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
-		friends.add(new FriendItem(3,"Nazar","Ivashiv",true,"http://cghub.com/outgoing/presskit/CGHUB_50x50_botCG.gif"));
 		return this;
 	}
 	

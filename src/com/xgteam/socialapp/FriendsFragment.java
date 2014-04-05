@@ -24,6 +24,7 @@ public class FriendsFragment extends Fragment implements OnTabChangeListener,
 	}
 
 	private TabHost _tabHost;
+	
 	private View _viewRoot;
 
 	private final TabDefinition[] TAB_DEFINITIONS = new TabDefinition[] {

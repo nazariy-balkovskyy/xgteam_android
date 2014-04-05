@@ -66,12 +66,14 @@ public class HomeFragment extends Fragment {
 		App app=App.getInstance();
 		Social.login("andrew", "andrew");
 		wallList=Wall.getUserWall();
-		//new DownloadImageTask(userPicture).execute(app.getUser().getPicture());
-		//doInBackground(User.getPicture());
+		new DownloadImageTask(userPicture).execute(app.getUser().getPicture());
 		
 		userName.setText(app.getUser().getFirstName()+" "+app.getUser().getLastName());
-		if(User.getOnlineState()==true){userOnlineState.setText("Online");}
-		else{userOnlineState.setText("Offline");}
+		if (User.getOnlineState() == true) {
+			userOnlineState.setText("Online");
+		} else {
+			userOnlineState.setText("Offline");
+		}
 		userFriendsButton.setText("Friends\n"+Friend.getFriendsCount());
 		userGroupsButton.setText("Groups\n"+Group.getGroupsCount());
 		userPicturesButton.setText("Pictures\n"+Picture.getPicturesCount());

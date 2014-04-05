@@ -2,7 +2,7 @@ package com.xgteam.adapter;
 
 import java.util.ArrayList;
 
-import com.xgteam.model.FriendItem;
+import com.xgteam.data.FriendObject;
 import com.xgteam.socialapp.R;
 import com.xgteam.utils.DownloadImageTask;
 
@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 public class FriendsListAdapter extends BaseAdapter {
 	Context context;
-	ArrayList<FriendItem> items;
+	ArrayList<FriendObject> items;
 
-	public FriendsListAdapter(Context context,ArrayList<FriendItem> items){
+	public FriendsListAdapter(Context context,ArrayList<FriendObject> items){
 		this.context = context;
 		this.items = items;
 	}
