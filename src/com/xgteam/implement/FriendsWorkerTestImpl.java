@@ -32,8 +32,7 @@ public class FriendsWorkerTestImpl implements FriendsWorker {
 					FriendObject user = ObjectConverter
 							.convertToFriendObject(jObject.getJSONObject("user")
 									.toString());
-					users.add(user);
-					
+					users.add(user);	
 				}
 			}
 			return users;
