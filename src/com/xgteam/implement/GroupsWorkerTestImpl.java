@@ -7,7 +7,7 @@ import com.xgteam.data.UserObject;
 import com.xgteam.interfaces.GroupsWorker;
 
 public class GroupsWorkerTestImpl implements GroupsWorker {
-
+	
 	@Override
 	public List<GroupObject> getUserGroups(int userId) {
 		// TODO Auto-generated method stub

@@ -12,29 +12,31 @@ import com.xgteam.utils.ObjectConverter;
 import com.xgteam.utils.Request;
 
 public class FriendsWorkerTestImpl implements FriendsWorker {
-
+	List<FriendObject> currentFriends;
 	@Override
 	public List<FriendObject> getUserFriends(int userId) {
-		// TODO Auto-generated method stub
+		if(currentFriends != null){
+			return currentFriends;
+		}
 		List<FriendObject> users = new ArrayList<FriendObject>();
 		try {
 			String response = Request
 					.sendGet(String
-							.format("http://mob.xgenteam.com/friends/get.json?uid=%s&access_token=%s",
+							.format("http://mob.xgenteam.com/friends/getEx.json?uid=%s&access_token=%s",
 									userId, App.getInstance().getUser()
 											.getGetToken()));
 			JSONObject jObject = new JSONObject(response);
 			int success = jObject.getInt("success");
 			if (success > 0) {
-				JSONArray jArray = jObject.getJSONArray("users");
+				JSONArray jArray = jObject.getJSONArray("friends");
 				int jArrayLength = jArray.length();
 				for (int i = 0; i < jArrayLength; i++) {
 					FriendObject user = ObjectConverter
-							.convertToFriendObject(jObject.getJSONObject("user")
-									.toString());
+							.convertToFriendObject(jArray.getJSONObject(i).toString());
 					users.add(user);	
 				}
 			}
+			currentFriends = (ArrayList<FriendObject>) users;
 			return users;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

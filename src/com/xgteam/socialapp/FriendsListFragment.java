@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.xgteam.adapter.FriendsListAdapter;
 import com.xgteam.application.App;
 import com.xgteam.data.FriendObject;
+import com.xgteam.loaders.FriendsLoader;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -15,9 +16,9 @@ import android.widget.ListView;
 
 public class FriendsListFragment extends Fragment{
 	ArrayList<FriendObject> friends = new ArrayList<FriendObject>();
+	FriendsListAdapter adapter;
 	public FriendsListFragment(){
 		super();
-		friends = (ArrayList<FriendObject>) App.getInstance().Friends().getUserFriends(1);
 	}
 	
 	public FriendsListFragment setOnlineMode(){
@@ -27,12 +28,13 @@ public class FriendsListFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		
 		View rootView = inflater.inflate(R.layout.fragment_friends_list, container,
 				false);
 		ListView listView = (ListView) rootView.findViewById(R.id.friends_list_view);
-		FriendsListAdapter adapter = new FriendsListAdapter(getActivity()
+		adapter = new FriendsListAdapter(getActivity()
 				.getApplicationContext(), friends);
+		new FriendsLoader().setAdapter(adapter).execute(String.valueOf(App.getInstance().getUser().getId()));
 		listView.setAdapter(adapter);
 		return rootView;
 	}
