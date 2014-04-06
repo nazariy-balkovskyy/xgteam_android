@@ -59,5 +59,8 @@ public class FriendsListAdapter extends BaseAdapter {
 				.execute(items.get(position).getPicture());
 		return convertView;
 	}
-
+	
+	public void setItems(ArrayList<FriendObject> items){
+		this.items = items;
+	}
 }
