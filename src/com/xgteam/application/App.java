@@ -31,6 +31,7 @@ public class App {
 		_groups = new GroupsWorkerTestImpl();
 		try {
 			setUser(_users.login(login, password));
+			_groups.setAccessToken(User.getToken());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Toast.makeText(null, "Error: "+e.getMessage(), Toast.LENGTH_LONG).show();

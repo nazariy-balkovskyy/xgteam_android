@@ -66,9 +66,8 @@ public class HomeFragment extends Fragment {
 		App app=App.getInstance();
 		Social.login("andrew", "andrew");
 		wallList=Wall.getUserWall();
-		String picture=app.getUser().getPicture();
 		
-		new DownloadImageTask(userPicture).execute(picture);
+		new DownloadImageTask(userPicture).execute(app.getUser().getPicture());
 		
 		userName.setText(app.getUser().getFirstName()+" "+app.getUser().getLastName());
 		if (app.getUser().isOnline() == true) {

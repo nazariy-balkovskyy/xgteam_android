@@ -24,7 +24,7 @@ public class FriendsWorkerTestImpl implements FriendsWorker {
 					.sendGet(String
 							.format("http://mob.xgenteam.com/friends/getEx.json?uid=%s&access_token=%s",
 									userId, App.getInstance().getUser()
-											.getGetToken()));
+											.getToken()));
 			JSONObject jObject = new JSONObject(response);
 			int success = jObject.getInt("success");
 			if (success > 0) {

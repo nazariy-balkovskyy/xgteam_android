@@ -63,10 +63,10 @@ public class UserObject {
 	public void setOnline(boolean isOnline) {
 		this.isOnline = isOnline;
 	}
-	public String getGetToken() {
+	public String getToken() {
 		return token;
 	}
-	public void setGetToken(String getToken) {
+	public void setToken(String getToken) {
 		this.token = getToken;
 	}
 	public int getUserCount() {
