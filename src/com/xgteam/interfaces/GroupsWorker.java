@@ -6,8 +6,11 @@ import com.xgteam.data.GroupObject;
 import com.xgteam.data.UserObject;
 
 public interface GroupsWorker {
-	List<GroupObject> getUserGroups(int userId);
-	List<UserObject> getMembers(int groupId);
-	boolean subscribeGroup(int groupId);
-	boolean unsubscribeGroup(int groupId);
+	void setAccessToken(String accessToken);
+	GroupObject get(int groupId,String accessToken);
+	List<GroupObject> get(String accessToken);
+	List<GroupObject> getUserGroups(int userId,String accessToken);
+	List<GroupObject> getUserGroups(String accessToken);
+	boolean subscribe(int groupId,String accessToken);
+	boolean unsubscribe(int groupId,String accessToken);
 }

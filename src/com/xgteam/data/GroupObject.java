@@ -1,11 +1,20 @@
 package com.xgteam.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public class GroupObject {
-	private int id; 
+	@SerializedName("id_group")
+	private int id;
+	
+	@SerializedName("name")
 	private String name;
+	
+	@SerializedName("picture")
+	private String picture;
+	
 	private String type;
 	private int membersCount;
-	private String picture;
+	
 	public GroupObject(int id, String name, String type, int membersCount,
 			String picture) {
 		super();

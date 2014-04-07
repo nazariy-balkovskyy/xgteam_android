@@ -1,6 +1,7 @@
 package com.xgteam.adapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.xgteam.data.GroupObject;
 import com.xgteam.model.GroupListModel;
 import com.xgteam.model.UserWallListModel;
 import com.xgteam.socialapp.R;
@@ -25,14 +27,14 @@ public class GroupListAdapter extends BaseAdapter  {
     
     /*********** Declare Used Variables *********/
     private Activity activity;
-    private ArrayList data;
+    private List<GroupObject> data;
     private static LayoutInflater inflater=null;
     public Resources res;
-    GroupListModel tempValues=null;
+    GroupObject tempValues=null;
     int i=0;
      
     /*************  CustomAdapter Constructor *****************/
-    public GroupListAdapter(Activity a, ArrayList d,Resources resLocal) {
+    public GroupListAdapter(Activity a, List<GroupObject> d,Resources resLocal) {
          
            /********** Take passed values **********/
             activity = a;
@@ -81,9 +83,9 @@ public class GroupListAdapter extends BaseAdapter  {
         //holder.groupAction=(Button) vi.findViewById(R.id.groupSubscriptionButton);
         if(data.size()>0){
             tempValues=null;
-            tempValues = ( GroupListModel ) data.get( position );
+            tempValues = ( GroupObject ) data.get( position );
 	         holder.groupName.setText(tempValues.getName());
-	         new DownloadImageTask(holder.groupImage).execute(tempValues.getImage());//doInBackground(User.getPicture());
+	         new DownloadImageTask(holder.groupImage).execute(tempValues.getPicture());//doInBackground(User.getPicture());
 //	         if(tempValues.isSubscribed()){
 //	        	 holder.groupAction.setText("Unsubscribe");
 //	         }
