@@ -1,14 +1,10 @@
 package com.xgteam.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xgteam.data.GroupObject;
-import com.xgteam.model.GroupListModel;
-import com.xgteam.model.UserWallListModel;
 import com.xgteam.socialapp.R;
 import com.xgteam.utils.DownloadImageTask;
 
