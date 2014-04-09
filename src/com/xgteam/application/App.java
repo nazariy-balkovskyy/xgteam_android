@@ -6,9 +6,11 @@ import com.xgteam.data.UserObject;
 import com.xgteam.implement.FriendsWorkerTestImpl;
 import com.xgteam.implement.GroupsWorkerTestImpl;
 import com.xgteam.implement.UserWorkerTestImpl;
+import com.xgteam.implement.WallWorkerTestImpl;
 import com.xgteam.interfaces.FriendsWorker;
 import com.xgteam.interfaces.GroupsWorker;
 import com.xgteam.interfaces.UserWorker;
+import com.xgteam.interfaces.WallWorker;
 
 public class App {
 	private static App instance;
@@ -24,11 +26,13 @@ public class App {
 	private UserWorker _users;
 	private FriendsWorker _friends;
 	private GroupsWorker _groups;
+	private WallWorker _wall;
 	private UserObject User;
 	private void init(){
 		_users = new UserWorkerTestImpl();
 		_friends = new FriendsWorkerTestImpl();
 		_groups = new GroupsWorkerTestImpl();
+		_wall = new WallWorkerTestImpl();
 		try {
 			setUser(_users.login(login, password));
 			_groups.setAccessToken(User.getToken());
@@ -52,6 +56,8 @@ public class App {
 	public GroupsWorker Groups(){
 		return _groups;
 	}
-	
+	public WallWorker Wall() {
+		return _wall;
+	}
 	
 }

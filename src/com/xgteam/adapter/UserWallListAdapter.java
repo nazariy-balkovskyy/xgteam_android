@@ -1,7 +1,9 @@
 package com.xgteam.adapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.xgteam.data.WallObject;
 import com.xgteam.model.User;
 import com.xgteam.model.UserWallListModel;
 import com.xgteam.socialapp.R;
@@ -24,14 +26,14 @@ public class UserWallListAdapter extends BaseAdapter   implements OnClickListene
     
     /*********** Declare Used Variables *********/
     private Activity activity;
-    private ArrayList data;
+    private List<WallObject> data=new ArrayList<WallObject>();
     private static LayoutInflater inflater=null;
     public Resources res;
-    UserWallListModel tempValues=null;
+    WallObject tempValues=null;
     int i=0;
      
     /*************  CustomAdapter Constructor *****************/
-    public UserWallListAdapter(Activity a, ArrayList d,Resources resLocal) {
+    public UserWallListAdapter(Activity a, List<WallObject> d,Resources resLocal) {
          
            /********** Take passed values **********/
             activity = a;
@@ -47,6 +49,9 @@ public class UserWallListAdapter extends BaseAdapter   implements OnClickListene
     /******** What is the size of Passed Arraylist Size ************/
     public int getCount() {
          
+    	if(data==null){
+    		return 0;
+    	}
         if(data.size()<=0)
             return 1;
         return data.size();
@@ -103,13 +108,13 @@ public class UserWallListAdapter extends BaseAdapter   implements OnClickListene
         {
             /***** Get each Model object from Arraylist ********/
             tempValues=null;
-            tempValues = ( UserWallListModel ) data.get( position );
+            tempValues = ( WallObject ) data.get( position );
              
             /************  Set Model values in Holder elements ***********/
 
-             holder.wallUserName.setText( tempValues.getUserName() );
-             holder.wallText.setText( tempValues.getText() );
-             new DownloadImageTask(holder.wallUserPicture).execute(tempValues.getImage());//doInBackground(User.getPicture());
+             holder.wallUserName.setText( tempValues.getUser().getFirstName()+" "+tempValues.getUser().getLastName() );
+             holder.wallText.setText( tempValues.getMessage() );
+             new DownloadImageTask(holder.wallUserPicture).execute(tempValues.getUser().getPicture());//doInBackground(User.getPicture());
               
              /******** Set Item Click Listner for LayoutInflater for each row *******/
 

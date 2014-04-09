@@ -14,6 +14,7 @@ public class GroupObject {
 	
 	private String type;
 	private int membersCount;
+	private boolean isUserSubscribed=false;
 	
 	public GroupObject(int id, String name, String type, int membersCount,
 			String picture) {
@@ -53,5 +54,11 @@ public class GroupObject {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public boolean isUserSubscribed() {
+		return isUserSubscribed;
+	}
+	public void setUserSubscribed(boolean isUserSubscribed) {
+		this.isUserSubscribed = isUserSubscribed;
 	}
 }
