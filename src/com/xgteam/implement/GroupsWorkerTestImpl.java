@@ -23,7 +23,7 @@ public class GroupsWorkerTestImpl implements GroupsWorker {
 	public GroupObject get(int groupId, String accessToken) {
 		// TODO Auto-generated method stub
 		try {
-			String response=Request.sendGet("http://mob.xgenteam.com/users/get.json?gid="+groupId+"&access_token="+accessToken);
+			String response=Request.sendGet("http://mob.xgenteam.com/groups/get.json?gid="+groupId+"&access_token="+accessToken);
 			JSONObject jObject = new JSONObject(response);
 			int success=jObject.getInt("success");
 			if(success>0){
@@ -44,7 +44,7 @@ public class GroupsWorkerTestImpl implements GroupsWorker {
 	public List<GroupObject> getUserGroups(int userId, String accessToken) {
 		// TODO Auto-generated method stub
 		try {
-			String response=Request.sendGet("http://mob.xgenteam.com/users/getByUserId.json?uid="+userId+"&access_token="+accessToken);
+			String response=Request.sendGet("http://mob.xgenteam.com/groups/getByUserId.json?uid="+userId+"&access_token="+accessToken);
 			JSONObject jObject = new JSONObject(response);
 			int success=jObject.getInt("success");
 			if(success>0){
@@ -52,7 +52,9 @@ public class GroupsWorkerTestImpl implements GroupsWorker {
 				int groupsCount=groups.length();
 				List<GroupObject> userGroups=new ArrayList<GroupObject>(); 
 				for(int i=0;i<groupsCount;i++){
-					userGroups.add(ObjectConverter.convertToGroupObject(groups.getJSONObject(i).toString()));
+					GroupObject gObj=ObjectConverter.convertToGroupObject(groups.getJSONObject(i).toString());
+					gObj.setUserSubscribed(true);
+					userGroups.add(gObj);
 				}
 				return userGroups;				
 			}
@@ -71,7 +73,7 @@ public class GroupsWorkerTestImpl implements GroupsWorker {
 	public boolean subscribe(int groupId, String accessToken) {
 		// TODO Auto-generated method stub
 		try {
-			String response=Request.sendGet("http://mob.xgenteam.com/users/subscribe.json?gid="+groupId+"&access_token="+accessToken);
+			String response=Request.sendGet("http://mob.xgenteam.com/groups/subscribe.json?gid="+groupId+"&access_token="+accessToken);
 			JSONObject jObject = new JSONObject(response);
 			int success=jObject.getInt("success");
 			if(success>0){
@@ -92,7 +94,7 @@ public class GroupsWorkerTestImpl implements GroupsWorker {
 	public boolean unsubscribe(int groupId, String accessToken) {
 		// TODO Auto-generated method stub
 		try {
-			String response=Request.sendGet("http://mob.xgenteam.com/users/unsubscribe.json?gid="+groupId+"&access_token="+accessToken);
+			String response=Request.sendGet("http://mob.xgenteam.com/groups/unsubscribe.json?gid="+groupId+"&access_token="+accessToken);
 			JSONObject jObject = new JSONObject(response);
 			int success=jObject.getInt("success");
 			if(success>0){
@@ -113,7 +115,7 @@ public class GroupsWorkerTestImpl implements GroupsWorker {
 	public List<GroupObject> get(String accessToken) {
 		// TODO Auto-generated method stub
 		try {
-			String response=Request.sendGet("http://mob.xgenteam.com/users/get.json?access_token="+accessToken);
+			String response=Request.sendGet("http://mob.xgenteam.com/groups/get.json?access_token="+accessToken);
 			JSONObject jObject = new JSONObject(response);
 			int success=jObject.getInt("success");
 			if(success>0){
@@ -148,7 +150,9 @@ public class GroupsWorkerTestImpl implements GroupsWorker {
 				int groupsCount=groups.length();
 				List<GroupObject> userGroups=new ArrayList<GroupObject>(); 
 				for(int i=0;i<groupsCount;i++){
-					userGroups.add(ObjectConverter.convertToGroupObject(groups.getJSONObject(i).toString()));
+					GroupObject gObj=ObjectConverter.convertToGroupObject(groups.getJSONObject(i).toString());
+					gObj.setUserSubscribed(true);
+					userGroups.add(gObj);
 				}
 				return userGroups;				
 			}

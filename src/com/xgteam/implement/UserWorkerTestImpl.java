@@ -15,8 +15,6 @@ public class UserWorkerTestImpl implements UserWorker{
 	
 	@Override
 	public UserObject getUser(int userId,String accessToken) {
-		// TODO Auto-generated method stub
-		//return new UserObject(userId, "Yesd", "khihdsas", true, null, 159, 25, null, false);
 		try {
 			String response=Request.sendGet("http://mob.xgenteam.com/users/get.json?uid="+userId+"&access_token="+accessToken);
 			JSONObject jObject = new JSONObject(response);
@@ -29,7 +27,6 @@ public class UserWorkerTestImpl implements UserWorker{
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -37,8 +34,6 @@ public class UserWorkerTestImpl implements UserWorker{
 
 	@Override
 	public UserObject login(String login, String password) {
-		// TODO Auto-generated method stub
-		//return new UserObject(1, "Nazar", "Balkovskyy", true, null, 159, 25, null, false);
 		try {
 			String response=Request.sendGet("http://mob.xgenteam.com/users/login.json?login="+login+"&password="+password);
 			JSONObject jObject = new JSONObject(response);
@@ -51,7 +46,6 @@ public class UserWorkerTestImpl implements UserWorker{
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -59,7 +53,6 @@ public class UserWorkerTestImpl implements UserWorker{
 
 	@Override
 	public List<UserObject> getAll(String accessToken) {
-		// TODO Auto-generated method stub
 		List<UserObject> users=new ArrayList<UserObject>();
 		try {
 			String response=Request.sendGet("http://mob.xgenteam.com/users/getAll.json?access_token="+accessToken);
@@ -79,7 +72,6 @@ public class UserWorkerTestImpl implements UserWorker{
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return users;
 		}
@@ -87,7 +79,6 @@ public class UserWorkerTestImpl implements UserWorker{
 
 	@Override
 	public UserObject logout(String accessToken) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

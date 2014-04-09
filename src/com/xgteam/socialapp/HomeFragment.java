@@ -1,6 +1,8 @@
 package com.xgteam.socialapp;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import org.w3c.dom.Text;
 
 import com.xgteam.adapter.UserWallListAdapter;
 import com.xgteam.application.App;
+import com.xgteam.data.WallObject;
 import com.xgteam.model.*;
 import com.xgteam.utils.DB;
 import com.xgteam.utils.DownloadImageTask;
@@ -37,7 +40,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class HomeFragment extends Fragment {
-	private ArrayList<UserWallListModel> wallList;
+	private List<WallObject> wallList;
 	public HomeFragment(){}
 	
 	@Override
@@ -64,8 +67,7 @@ public class HomeFragment extends Fragment {
 		
 		//user login and get profile information
 		App app=App.getInstance();
-		Social.login("andrew", "andrew");
-		wallList=Wall.getUserWall();
+		wallList=App.getInstance().Wall().get("user", App.getInstance().getUser().getId(), App.getInstance().getUser().getToken());
 		
 		new DownloadImageTask(userPicture).execute(app.getUser().getPicture());
 		
@@ -107,11 +109,13 @@ public class HomeFragment extends Fragment {
 			public void onClick(View v) {
 				Editable message=userWallInputMessage.getText();
 				if(message.length()>0){
-					UserWallListModel sched = new UserWallListModel();
-					sched.setUserName(User.getFirstName()+" "+User.getLastName());
-		            sched.setImage(User.getPicture());
-		            sched.setText(message.toString());
+					WallObject sched = new WallObject();
+					sched.setUser(App.getInstance().getUser());
+					SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+					sched.setCreatedAt(dateFormat.format(Calendar.getInstance().getTime()));
+					sched.setMessage(message.toString());
 		            wallList.add(0,sched);
+		            App.getInstance().Wall().write("user", App.getInstance().getUser().getId(), message.toString(), App.getInstance().getUser().getToken());
 		            UserWallListAdapter adapter=new UserWallListAdapter( thisActivity, wallList,res);
 		            listview.refreshDrawableState();
 		    		listview.setAdapter(adapter);

@@ -38,41 +38,25 @@ public class GroupsFragment extends Fragment  implements OnItemClickListener{
 		Button myGroupsButton=(Button) rootView.findViewById(R.id.myGroupsButton);
 		Button allGroupsButton=(Button) rootView.findViewById(R.id.allGroupsButton);
 		final ListView listview =(ListView)rootView.findViewById(R.id.groupsList);
-		App app=App.getInstance();
-		String accessToken=app.getUser().getToken();
-		GroupsWorker groupWorker=app.Groups();
-		List<GroupObject> groupsList = groupWorker.getUserGroups(accessToken);
+		List<GroupObject> groupsList = App.getInstance().Groups().getUserGroups(App.getInstance().getUser().getToken());
 		
 		final Resources res =getResources();
 		final Activity thisActivity=this.getActivity();
-		//groupList=Group.getUserGroups();
-		/*listview.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				GroupListModel entry = (GroupListModel) parent.getItemAtPosition(position);
-				GroupFragment.setGroup(entry);
-				((MainActivity)getActivity()).displayView(-1);
-            }
-		});*/
-		GroupListAdapter adapter=new GroupListAdapter( this.getActivity(), groupsList,res );
+		GroupListAdapter adapter=new GroupListAdapter( thisActivity, groupsList,res );
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(this);
 		myGroupsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	groupList=new ArrayList<GroupListModel>();
-            	groupList=Group.getUserGroups();
-        		//GroupListAdapter adapter=new GroupListAdapter( thisActivity, groupsList,res );
-        		//listview.refreshDrawableState();
-        		//listview.setAdapter(adapter);
+            	List<GroupObject> groupsList = App.getInstance().Groups().getUserGroups(App.getInstance().getUser().getToken());
+            	GroupListAdapter adapter=new GroupListAdapter( thisActivity, groupsList,res );
+        		listview.setAdapter(adapter);
             }
         });
 		allGroupsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	groupList=new ArrayList<GroupListModel>();
-            	groupList=Group.getAll();
-        		//GroupListAdapter adapter=new GroupListAdapter( thisActivity, groupsList,res );
-        		//listview.refreshDrawableState();
-        		//listview.setAdapter(adapter);
+            	List<GroupObject> groupsList = App.getInstance().Groups().get(App.getInstance().getUser().getToken());
+            	GroupListAdapter adapter=new GroupListAdapter( thisActivity, groupsList,res);
+        		listview.setAdapter(adapter);
             }
         });
 		return rootView;
@@ -81,7 +65,7 @@ public class GroupsFragment extends Fragment  implements OnItemClickListener{
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
 		// TODO Auto-generated method stub
-		GroupListModel entry = (GroupListModel) v.getTag();
+		GroupObject entry = (GroupObject) v.getTag();
 		GroupFragment.setGroup(entry);
 		((MainActivity)getActivity()).displayView(-1);
 	}
